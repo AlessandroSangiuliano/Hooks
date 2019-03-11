@@ -1,0 +1,7 @@
+#!/bin/sh
+
+version=$(sed -n '/^version/p' build.gradle | cut -f 2 -d " ")
+echo $version
+
+origin=$(sed -n '/^info.build.version/p' src/main/resources/application.properties)
+sed -i -e "s/\\${origin}/info.build.version = \\${version}/g" src/main/resources/application.properties
